@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Credentials / secrets — never commit
+.env
+.env.*
+!.env.example
+*credentials*.json
+*service-account*.json
+
+# Logs
+logs/
+*.log
+
+# Test / coverage
+coverage/
+
+# OS / editor
+.DS_Store
+*.swp
+.idea/
+.vscode/
