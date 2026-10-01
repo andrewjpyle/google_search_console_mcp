@@ -24,7 +24,7 @@ export async function listSitemaps(args: ListSitemapsArgs): Promise<ToolResponse
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');
@@ -69,7 +69,7 @@ export async function submitSitemap(args: SubmitSitemapArgs): Promise<ToolRespon
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');

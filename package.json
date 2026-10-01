@@ -1,7 +1,7 @@
 {
   "name": "google-search-console-mcp",
-  "version": "1.0.0",
-  "description": "A Model Context Protocol (MCP) server for Google Search Console — read and write SEO operations (search analytics, indexing, sitemaps, disavow, hreflang, structured-data revalidation) for AI assistants.",
+  "version": "1.1.0",
+  "description": "A Model Context Protocol (MCP) server for Google Search Console: search analytics, URL inspection, and sitemaps for AI assistants. Real API calls only.",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -37,18 +37,17 @@
     "dev": "tsx src/index.ts",
     "test": "jest",
     "test:unit": "jest tests/unit",
-    "test:integration": "jest tests/integration",
     "test:e2e": "jest tests/e2e",
     "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "call": "node scripts/call-tool.mjs"
   },
   "dependencies": {
     "@googleapis/searchconsole": "^3.0.0",
-    "@modelcontextprotocol/sdk": "^0.5.0",
+    "@modelcontextprotocol/sdk": "^1.31.0",
     "dotenv": "^16.6.1",
     "google-auth-library": "^9.4.1",
     "googleapis": "^134.0.0",
-    "node-cache": "^5.1.2",
     "winston": "^3.15.0",
     "winston-daily-rotate-file": "^5.0.0",
     "zod": "^3.24.1"
