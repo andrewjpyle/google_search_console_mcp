@@ -1,0 +1,18 @@
+{
+  "name": "get_top_queries",
+  "command": [
+    "node",
+    "scripts/call-tool.mjs",
+    "get_top_queries",
+    "{\"site_url\":\"sc-domain:andrewjpyle.com\",\"days\":28,\"limit\":8}"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-01T21:59:01+00:00",
+  "commit": "3cbecec2b555ab3de88d7ee82b1a3e3c86f96733",
+  "line_count": 63,
+  "env_passed": [
+    "GOOGLE_SEARCH_CONSOLE_CREDENTIALS",
+    "GOOGLE_SEARCH_CONSOLE_SITE_URLS"
+  ],
+  "output": "{\n  \"top_queries\": [\n    {\n      \"query\": \"mcp certification\",\n      \"clicks\": 2,\n      \"impressions\": 44,\n      \"ctr\": \"4.55%\",\n      \"position\": \"13.6\"\n    },\n    {\n      \"query\": \"psiquantum roadmap\",\n      \"clicks\": 2,\n      \"impressions\": 30,\n      \"ctr\": \"6.67%\",\n      \"position\": \"6.1\"\n    },\n    {\n      \"query\": \"ai technology trends 2026\",\n      \"clicks\": 1,\n      \"impressions\": 3,\n      \"ctr\": \"33.33%\",\n      \"position\": \"62.7\"\n    },\n    {\n      \"query\": \"best ai free\",\n      \"clicks\": 1,\n      \"impressions\": 54,\n      \"ctr\": \"1.85%\",\n      \"position\": \"4.4\"\n    },\n    {\n      \"query\": \"best free ai\",\n      \"clicks\": 1,\n      \"impressions\": 174,\n      \"ctr\": \"0.57%\",\n      \"position\": \"4.9\"\n    },\n    {\n      \"query\": \"best free ai voice generator\",\n      \"clicks\": 1,\n      \"impressions\": 9,\n      \"ctr\": \"11.11%\",\n      \"position\": \"20.4\"\n    },\n    {\n      \"query\": \"best free ai without limits\",\n      \"clicks\": 1,\n      \"impressions\": 33,\n      \"ctr\": \"3.03%\",\n      \"position\": \"24.9\"\n    },\n    {\n      \"query\": \"filmed at\",\n      \"clicks\": 1,\n      \"impressions\": 15,\n      \"ctr\": \"6.67%\",\n      \"position\": \"1.8\"\n    }\n  ],\n  \"period\": \"28 days\",\n  \"rowCount\": 8,\n  \"timestamp\": \"2026-10-01T21:59:01.305Z\"\n}\n"
+}

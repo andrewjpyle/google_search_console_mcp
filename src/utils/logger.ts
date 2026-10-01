@@ -4,13 +4,13 @@
 
 import winston from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
-import path from 'path';
 
 // Determine log level from environment
 const logLevel = process.env.LOG_LEVEL || 'info';
 
-// Create logs directory path
-const logsDir = process.env.LOG_DIR || path.join(process.cwd(), 'logs');
+// File logs are opt-in. Set LOG_DIR to write daily-rotated JSON logs there (kept 30 days).
+// Unset (the default), the server writes nothing to disk.
+const logsDir = process.env.LOG_DIR;
 
 // Define log format
 const jsonFormat = winston.format.combine(
@@ -29,17 +29,16 @@ const customFormat = winston.format.combine(
   })
 );
 
-// Create the logger
-export const logger = winston.createLogger({
-  level: logLevel,
-  format: jsonFormat,
-  transports: [
-    // Console transport for development
-    new winston.transports.Console({
-      format: customFormat,
-    }),
+// Every level goes to stderr. stdout belongs to the MCP protocol: a single log line there is
+// interleaved with JSON-RPC and can break a strict client.
+export const STDERR_LEVELS = ['error', 'warn', 'info', 'http', 'verbose', 'debug', 'silly'];
 
-    // Daily rotate file transport for all logs
+const transports: winston.transport[] = [
+  new winston.transports.Console({ format: customFormat, stderrLevels: STDERR_LEVELS }),
+];
+
+if (logsDir) {
+  transports.push(
     new DailyRotateFile({
       dirname: logsDir,
       filename: 'google-search-console-%DATE%.log',
@@ -47,8 +46,6 @@ export const logger = winston.createLogger({
       maxFiles: '30d',
       format: jsonFormat,
     }),
-
-    // Daily rotate file transport for errors only
     new DailyRotateFile({
       level: 'error',
       dirname: logsDir,
@@ -56,8 +53,15 @@ export const logger = winston.createLogger({
       datePattern: 'YYYY-MM-DD',
       maxFiles: '30d',
       format: jsonFormat,
-    }),
-  ],
+    })
+  );
+}
+
+// Create the logger
+export const logger = winston.createLogger({
+  level: logLevel,
+  format: jsonFormat,
+  transports,
 });
 
 // Export convenience methods

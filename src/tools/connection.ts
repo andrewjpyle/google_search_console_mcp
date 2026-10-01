@@ -70,7 +70,7 @@ export async function getSiteInfo(args: GetSiteInfoArgs): Promise<ToolResponse> 
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');

@@ -7,6 +7,7 @@ import { GoogleAuth, OAuth2Client } from 'google-auth-library';
 import { AuthenticationError } from '../utils/errors.js';
 import { logger } from '../utils/logger.js';
 import type { GoogleSearchConsoleCredentials, ServiceAccountCredentials } from '../types/credentials.js';
+import { resolveSiteUrl } from '../utils/siteScope.js';
 
 export class GoogleSearchConsoleAuthClient {
   private auth: GoogleAuth | OAuth2Client | null = null;
@@ -79,6 +80,13 @@ export class GoogleSearchConsoleAuthClient {
   /**
    * Get default site URL
    */
+  /**
+   * Resolve and scope-check the property a tool call targets (see utils/siteScope.ts).
+   */
+  resolveSiteUrl(requested?: string): string {
+    return resolveSiteUrl(requested, this.getDefaultSiteUrl(), this.siteUrls);
+  }
+
   getDefaultSiteUrl(): string | null {
     const siteUrl = process.env.GOOGLE_SEARCH_CONSOLE_SITE_URL;
     if (siteUrl) {

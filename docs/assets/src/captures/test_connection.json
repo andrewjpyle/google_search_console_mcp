@@ -1,0 +1,17 @@
+{
+  "name": "test_connection",
+  "command": [
+    "node",
+    "scripts/call-tool.mjs",
+    "test_connection"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-01T21:59:00+00:00",
+  "commit": "3cbecec2b555ab3de88d7ee82b1a3e3c86f96733",
+  "line_count": 5,
+  "env_passed": [
+    "GOOGLE_SEARCH_CONSOLE_CREDENTIALS",
+    "GOOGLE_SEARCH_CONSOLE_SITE_URLS"
+  ],
+  "output": "{\n  \"success\": true,\n  \"sites_found\": 106,\n  \"timestamp\": \"2026-10-01T21:59:00.321Z\"\n}\n"
+}

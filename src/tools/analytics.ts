@@ -24,7 +24,7 @@ export async function searchAnalytics(args: SearchAnalyticsArgs): Promise<ToolRe
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');
@@ -85,7 +85,7 @@ export async function getTopQueries(args: TopQueriesArgs): Promise<ToolResponse>
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');
@@ -140,7 +140,7 @@ export async function getTopPages(args: TopPagesArgs): Promise<ToolResponse> {
     const apiClient = await getAPIClient();
 
     // Use provided site_url or default
-    const siteUrl = args.site_url || authClient.getDefaultSiteUrl();
+    const siteUrl = authClient.resolveSiteUrl(args.site_url);
 
     if (!siteUrl) {
       throw new Error('Site URL is required');
