@@ -1,0 +1,18 @@
+{
+  "name": "get_indexing_status",
+  "command": [
+    "node",
+    "scripts/call-tool.mjs",
+    "get_indexing_status",
+    "{\"site_url\":\"sc-domain:andrewjpyle.com\",\"inspection_url\":\"https://andrewjpyle.com/\"}"
+  ],
+  "exit_code": 0,
+  "captured_at": "2026-10-01T21:53:16+00:00",
+  "commit": "2e9736631ba976638c023f9da12771ec4dcafe58",
+  "line_count": 30,
+  "env_passed": [
+    "GOOGLE_SEARCH_CONSOLE_CREDENTIALS",
+    "GOOGLE_SEARCH_CONSOLE_SITE_URLS"
+  ],
+  "output": "{\n  \"url\": \"https://andrewjpyle.com/\",\n  \"inspectionResult\": {\n    \"inspectionResultLink\": \"https://search.google.com/search-console/inspect?resource_id=sc-domain:andrewjpyle.com&id=1KtcB-H3Es0_RGeyf-wLtw&utm_medium=link&utm_source=api\",\n    \"indexStatusResult\": {\n      \"verdict\": \"PASS\",\n      \"coverageState\": \"Submitted and indexed\",\n      \"robotsTxtState\": \"ALLOWED\",\n      \"indexingState\": \"INDEXING_ALLOWED\",\n      \"lastCrawlTime\": \"2026-10-01T02:03:05Z\",\n      \"pageFetchState\": \"SUCCESSFUL\",\n      \"googleCanonical\": \"https://andrewjpyle.com/\",\n      \"userCanonical\": \"https://andrewjpyle.com/\",\n      \"sitemap\": [\n        \"https://andrewjpyle.com/sitemap-pages.xml\",\n        \"https://andrewjpyle.com/sitemap.xml\"\n      ],\n      \"referringUrls\": [\n        \"https://andrewjpyle.com/writing\",\n        \"https://andrewjpyle.com/ai/atlas/models/qwen2-5-coder-32b-instruct\",\n        \"https://andrewjpyle.com/sitemap.xml\"\n      ],\n      \"crawledAs\": \"MOBILE\"\n    },\n    \"mobileUsabilityResult\": {\n      \"verdict\": \"VERDICT_UNSPECIFIED\"\n    }\n  },\n  \"timestamp\": \"2026-10-01T21:53:16.344Z\"\n}\n"
+}

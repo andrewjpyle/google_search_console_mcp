@@ -40,7 +40,8 @@
     "test:e2e": "jest tests/e2e",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "call": "node scripts/call-tool.mjs"
+    "call": "node scripts/call-tool.mjs",
+    "pretest": "tsc"
   },
   "dependencies": {
     "@googleapis/searchconsole": "^3.0.0",
