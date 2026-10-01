@@ -64,7 +64,7 @@ def hero() -> str:
 def anatomy() -> str:
     c = cap("get_top_queries")
     data = json.loads(c["output"])
-    rows = data["top_queries"][:6]
+    rows = data["top_queries"]
     cmd = " ".join(c["command"][2:3]) + " " + c["command"][3]
     lines = [("m", f"$ npm run call -- {k.esc(cmd)}"), ("h1", "get_top_queries · sc-domain:andrewjpyle.com")]
     head = "<span style='display:inline-block;width:330px'>query</span><span style='display:inline-block;width:70px;text-align:right'>clicks</span><span style='display:inline-block;width:110px;text-align:right'>impressions</span><span style='display:inline-block;width:80px;text-align:right'>ctr</span><span style='display:inline-block;width:90px;text-align:right'>position</span>"
@@ -76,12 +76,12 @@ def anatomy() -> str:
             f"<span style='display:inline-block;width:110px;text-align:right'>{r['impressions']}</span>"
             f"<span style='display:inline-block;width:80px;text-align:right'>{k.esc(r['ctr'])}</span>"
             f"<span style='display:inline-block;width:90px;text-align:right'>{k.esc(r['position'])}</span>"))
-    lines.append(("i", f"period: {k.esc(data['period'])} · rows returned: {data['rowCount']} · showing the first {len(rows)}"))
+    lines.append(("i", f"period: {k.esc(data['period'])} · rows returned: {data['rowCount']}"))
     lines.append(("m", f"captured {k.esc(c['captured_at'])} · commit {c['commit'][:7]}"))
-    notes = [(150, "One tool call, the same one Claude makes. npm run call runs it through a real MCP client."),
-             (300, "Live numbers from the Search Analytics API: clicks, impressions, CTR, average position."),
-             (470, "Structured JSON the assistant can reason over and compare, not a screenshot of a dashboard."),
-             (585, "Every graphic here is rendered from a committed capture of a real run. Nothing typed in.")]
+    notes = [(112, "One tool call, the same one Claude makes. npm run call runs it through a real MCP client."),
+             (205, "Live numbers from the Search Analytics API: clicks, impressions, CTR, average position."),
+             (320, "Structured JSON the assistant can reason over and compare, not a screenshot of a dashboard."),
+             (412, "Rendered from a committed capture of a real run, commit and timestamp included. Nothing typed in.")]
     return k.anatomy("ANATOMY OF A REAL ANSWER", lines, notes, f"{REPO} · REAL RUN {run_date(c)}", doc_width=830)
 
 
@@ -90,6 +90,7 @@ def inspect() -> str:
     r = json.loads(c["output"])
     ir = r["inspectionResult"]["indexStatusResult"]
     refusal = cap("allowlist_refusal")
+    sites_visible = json.loads(cap("test_connection")["output"])["sites_found"]
     ref = json.loads(refusal["output"])
     lines = [("m", "$ npm run call -- get_indexing_status '{\"inspection_url\": \"https://andrewjpyle.com/\"}'"),
              ("h1", "URL Inspection · andrewjpyle.com/"),
@@ -103,10 +104,10 @@ def inspect() -> str:
              ("b", k.esc(ref["error"])),
              ("i", "Refused before any request reaches Google. Exit code 1."),
              ("m", f"captured {k.esc(c['captured_at'][:10])} · commit {c['commit'][:7]}")]
-    notes = [(150, "Ask why a page is or is not in Google. The URL Inspection API answers in seconds."),
-             (250, "Canonical mismatches and robots blocks show up here before they cost traffic."),
-             (420, "GOOGLE_SEARCH_CONSOLE_SITE_URLS is an allowlist. Writes included."),
-             (520, "The credentials used here can see 106 properties. The server still touches one.")]
+    notes = [(112, "Ask why a page is or is not in Google. The URL Inspection API answers in seconds."),
+             (205, "Canonical mismatches and robots blocks show up here before they cost traffic."),
+             (372, "GOOGLE_SEARCH_CONSOLE_SITE_URLS is an allowlist, and it covers the two write tools too."),
+             (450, f"The credentials in this run can see {sites_visible} properties. The allowlist held it to one.")]
     return k.anatomy("INSPECT, AND STAY IN SCOPE", lines, notes, f"{REPO} · REAL RUN {run_date(c)}", doc_width=830)
 
 
@@ -114,12 +115,12 @@ def architecture() -> str:
     boxes = (k.box(56, 200, 230, 210, "YOUR ASSISTANT", ["Claude Desktop", "Claude Code", "any MCP client", "npm run call"])
              + k.box(376, 200, 250, 210, "THIS SERVER", ["zod-validated input", "retry with backoff", "site allowlist", "10 tools, stdio"], True)
              + k.box(716, 200, 270, 210, "GOOGLE APIS", ["Search Console API", "  analytics, sites, sitemaps", "URL Inspection API", "Web Search Indexing API"])
-             + k.box(1076, 200, 268, 210, "BACK TO YOU", ["JSON the model can read", "errors with a reason", "nothing cached or stored"])
+             + k.box(1076, 200, 268, 210, "BACK TO YOU", ["JSON the model can read", "errors with a reason", "nothing on disk by default"])
              + k.box(376, 540, 250, 120, "OFF-LIST PROPERTY", ["refused before any", "request leaves the server"]))
     arrows = [(286, 305, 366, 305, "stdio"), (626, 305, 706, 305, "HTTPS"), (986, 305, 1066, 305),
               (501, 420, 501, 530, "not in SITE_URLS", True, "right")]
     return k.flow("HOW IT WORKS", f"Ask in plain words. {k.em('Real')} API answers.",
-                  "credentials come only from env vars · writes are labeled · the allowlist is checked on every call",
+                  "credentials come only from env vars · logs go to stderr · the allowlist is checked on every call",
                   boxes, arrows, f"{REPO} · HOW IT WORKS")
 
 

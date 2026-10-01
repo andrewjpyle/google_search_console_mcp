@@ -7,12 +7,12 @@
     "{\"site_url\":\"sc-domain:example.com\",\"sitemap_url\":\"https://example.com/sitemap.xml\"}"
   ],
   "exit_code": 1,
-  "captured_at": "2026-10-01T21:53:16+00:00",
-  "commit": "2e9736631ba976638c023f9da12771ec4dcafe58",
+  "captured_at": "2026-10-01T21:59:08+00:00",
+  "commit": "3cbecec2b555ab3de88d7ee82b1a3e3c86f96733",
   "line_count": 4,
   "env_passed": [
     "GOOGLE_SEARCH_CONSOLE_CREDENTIALS",
     "GOOGLE_SEARCH_CONSOLE_SITE_URLS"
   ],
-  "output": "{\n  \"error\": \"sc-domain:example.com is not in GOOGLE_SEARCH_CONSOLE_SITE_URLS, so this server will not act on it\",\n  \"timestamp\": \"2026-10-01T21:53:16.822Z\"\n}\n"
+  "output": "{\n  \"error\": \"sc-domain:example.com is not in GOOGLE_SEARCH_CONSOLE_SITE_URLS, so this server will not act on it\",\n  \"timestamp\": \"2026-10-01T21:59:08.711Z\"\n}\n"
 }

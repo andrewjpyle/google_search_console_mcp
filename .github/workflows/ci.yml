@@ -1,0 +1,38 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Tests (fails if fewer tests ran than the floor, so a gutted suite cannot pass)
+        run: |
+          npx jest --ci --json --outputFile=jest-results.json
+          node -e '
+            const r = require("./jest-results.json");
+            const FLOOR = 39;
+            console.log(`tests run: ${r.numTotalTests}, passed: ${r.numPassedTests}, floor: ${FLOOR}`);
+            if (!r.success || r.numTotalTests < FLOOR) process.exit(1);
+          '
+      - name: Tool list works with no credentials
+        run: |
+          npm run call --silent -- --list | tee tools.txt
+          test "$(wc -l < tools.txt)" -eq 10

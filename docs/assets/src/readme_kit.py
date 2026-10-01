@@ -192,8 +192,8 @@ def anatomy(kicker: str, doc_lines: list[tuple[str, str]], notes: list[tuple[int
              "h2": "font:600 17px Inter;margin:14px 0 6px;color:var(--ivory)", "b": "font-weight:600;color:var(--amber)",
              "i": "color:var(--muted);font-style:italic;margin-top:4px", "li": "margin:4px 0 0 16px", "li2": "margin:3px 0 0 36px;color:var(--muted)",
              "m": "margin-top:14px;color:var(--dim);font:12px 'JetBrains Mono'",
-             "code": "font:13px 'JetBrains Mono';color:var(--muted);white-space:pre;margin:1px 0"}
-    doc = "".join(f"<div style=\"font-size:15px;line-height:1.45;{style[k]}\">{t}</div>" for k, t in doc_lines)
+             "code": "font:15px 'JetBrains Mono';color:var(--muted);white-space:pre;margin:3px 0"}
+    doc = "".join(f"<div style=\"font-size:16px;line-height:1.5;{style[k]}\">{t}</div>" for k, t in doc_lines)
     callouts = "".join(
         f"<div style='position:absolute;left:{56 + doc_width + 34}px;top:{y}px;width:{1400 - 56 - doc_width - 34 - 56}px;display:flex;gap:12px;align-items:flex-start'>"
         f"<div style='width:26px;height:2px;background:var(--amber);margin-top:11px;flex:none'></div>"

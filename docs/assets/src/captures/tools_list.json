@@ -6,8 +6,8 @@
     "--list"
   ],
   "exit_code": 0,
-  "captured_at": "2026-10-01T21:53:08+00:00",
-  "commit": "2e9736631ba976638c023f9da12771ec4dcafe58",
+  "captured_at": "2026-10-01T21:58:59+00:00",
+  "commit": "3cbecec2b555ab3de88d7ee82b1a3e3c86f96733",
   "line_count": 10,
   "env_passed": [],
   "output": "test_connection        Test connection and authentication to the Google Search Console API\nlist_sites             List all verified sites in the authenticated Search Console account\nget_site_info          Get details and permission level for a specific verified site\nsearch_analytics       Query Search Analytics data (clicks, impressions, CTR, position) by dimension\nget_top_queries        Get the top search queries for a site over a lookback window\nget_top_pages          Get the top performing pages for a site over a lookback window\nlist_sitemaps          List all sitemaps submitted for a site\nsubmit_sitemap         Submit (or resubmit) a sitemap to Search Console \u2014 a real write operation\nget_indexing_status    Inspect a URL with the URL Inspection API (index status, coverage, canonical, richness)\nrequest_indexing       Notify Google of a new or updated URL via the Web Search Indexing API \u2014 a real write operation\n"
